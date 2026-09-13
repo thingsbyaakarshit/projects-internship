@@ -1,0 +1,37 @@
+{
+  "depression_statistics": {
+    "age_groups": [
+      {
+        "age_range": "10-19",
+        "percentage_affected": 14.3,
+        "source": "Latest Census Data 2020"
+      },
+      {
+        "age_range": "20-29",
+        "percentage_affected": 18.7,
+        "source": "Latest Census Data 2020"
+      },
+      {
+        "age_range": "30-39",
+        "percentage_affected": 16.5,
+        "source": "Latest Census Data 2020"
+      },
+      {
+        "age_range": "40-49",
+        "percentage_affected": 15.2,
+        "source": "Latest Census Data 2020"
+      },
+      {
+        "age_range": "50-59",
+        "percentage_affected": 12.8,
+        "source": "Latest Census Data 2020"
+      },
+      {
+        "age_range": "60+",
+        "percentage_affected": 10.4,
+        "source": "Latest Census Data 2020"
+      }
+    ],
+    "notes": "Data represents estimated percentage of individuals affected by depression in each age group based on the latest census data."
+  }
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--
+  Interactive Map — simple mapping demo using Leaflet and static JSON data.
+  Purpose: provide a lightweight example showing how to initialize a map,
+  load geo-located markers from `data/locations.json`, and filter/search
+  them from the UI controls at the top of the page.
+
+  Files of interest:
+    - script.js           => application entry (imports modules)
+    - modules/map.js      => initializes Leaflet map and controls
+    - modules/markers.js  => loads & renders markers from JSON
+    - modules/search.js   => wires search input and category filter
+    - modules/utils.js    => small utilities (debounce)
+    - data/locations.json => sample location data
+-->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Map</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Custom Styles -->
+  <style>
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+
+    /* modern popup tweaks */
+    .modern-popup.leaflet-popup-content-wrapper {
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+      padding: 10px 12px;
+    }
+
+    .leaflet-popup-tip {
+      display: none;
+    }
+
+    /* custom map control buttons */
+    .map-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: transparent;
+    }
+
+    .map-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 12px rgba(2, 6, 23, 0.08);
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .map-btn svg {
+      width: 18px;
+      height: 18px;
+      color: #0f172a;
+    }
+
+    .map-btn:active {
+      transform: translateY(1px);
+    }
+
+    .fade-in {
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-900">
+  <!-- Top control bar: search input + category dropdown
+    This is a visual, accessible UI for searching and filtering
+    locations. The form controls are referenced by `modules/search.js`.
+  -->
+  <div class="absolute z-10 w-full p-4 flex justify-center">
+    <div
+      class="w-full max-w-4xl flex items-center gap-3 bg-white bg-opacity-90 p-2 rounded-full shadow-lg backdrop-blur-sm">
+
+      <!-- Search pill -->
+      <div class="flex items-center gap-2 px-3 py-1 bg-white rounded-full shadow-sm flex-1">
+        <!-- search icon -->
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"></path>
+        </svg>
+        <input id="searchInput" type="text" placeholder="Search by name..."
+          class="flex-1 bg-transparent p-2 text-sm text-gray-700 placeholder-gray-400 focus:outline-none" />
+      </div>
+
+      <!-- Category dropdown (custom UI) -->
+      <div class="relative">
+        <!-- hidden select kept for compatibility with the JS module.
+       The visible dropdown is a custom UI that mirrors the select's
+       value; scripts dispatch a `change` event on the select so other
+       code can react to updates.
+     -->
+        <select id="categorySelect" class="hidden" aria-hidden="true">
+          <option value="">All Categories</option>
+          <option value="Park">Park</option>
+          <option value="Museum">Museum</option>
+          <option value="Landmark">Landmark</option>
+          <option value="Beach">Beach</option>
+          <option value="Monument">Monument</option>
+          <option value="Historical">Historical</option>
+        </select>
+
+        <button id="categoryBtn" type="button" class="flex items-center gap-3 ">
+          <span id="categoryLabel" class="text-sm text-gray-700">All Categories</span>
+          <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+
+        <!-- dropdown menu -->
+        <div id="categoryMenu"
+          class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+          <ul class="py-1">
+            <li data-value="" class="px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">All Categories
+            </li>
+            <li data-value="Park" class="px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">Park</li>
+            <li data-value="Museum" class="px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">Museum</li>
+            <li data-value="Landmark" class="px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">Landmark
+            </li>
+            <li data-value="Beach" class="px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">Beach</li>
+            <li data-value="Monument" class="px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">Monument
+            </li>
+            <li data-value="Historical" class="px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">
+              Historical</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Main map container. The Leaflet map instance is attached to this DIV. -->
+  <div id="map" class="z-0"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- App Script: imports the module entrypoint which wires the app
+    (map initialization, loading markers, and search hookup). -->
+  <script type="module" src="./script.js"></script>
+
+
+</body>
+
+</html>

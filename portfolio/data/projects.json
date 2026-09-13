@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Business to Investor Bridge Application",
+    "description": "An application that connects businesses with potential investors through a streamlined interface.",
+    "tech": "HTML, TailwindCSS, JavaScript, Firebase",
+    "image": "./assets/project-images/project-bridge.png"
+  },
+  {
+    "title": "Expense Tracker",
+    "description": "An application to track expenses and income with visualizations using Chart.js.",
+    "tech": "HTML, TailwindCSS, JavaScript, Chart.js",
+    "image": "./assets/project-images/project-expense.png"
+  },
+  {
+    "title": "Interactive Map App",
+    "description": "Built with Leaflet.js to explore locations with category filtering.",
+    "tech": "HTML, TailwindCSS, JavaScript, Leaflet.js",
+    "image": "./assets/project-images/project-map.png"  
+  },
+  {
+    "title": "Blog Website",
+    "description": "A clean and minimal blog with modular structure and reusable components.",
+    "tech": "HTML, TailwindCSS, JavaScript",
+    "image": "./assets/project-images/project-blog.png"
+  },
+  {
+    "title": "Chat application",
+    "description": "A real-time chat application enabling users to communicate instantly using WebSockets and Socket.io.",
+    "tech": "HTML, TailwindCSS, JavaScript, WebSockets, Socket.io and Express.js",
+    "image": "./assets/project-images/project-chat.png"
+  },
+  {
+    "title": "Mental Health Dashboard",
+    "description": "Dashboard with charts and timelines to visualize mental health statistics.",
+    "tech": "HTML, TailwindCSS, Chart.js, JSON",
+    "image": "./assets/project-images/project-infographics.png"
+  }
+]

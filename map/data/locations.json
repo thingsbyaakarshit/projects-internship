@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "name": "Central Park",
+    "category": "Park",
+    "lat": 40.785091,
+    "lng": -73.968285,
+    "description": "A large public park in New York City."
+  },
+  {
+    "id": 2,
+    "name": "Louvre Museum",
+    "category": "Museum",
+    "lat": 48.860611,
+    "lng": 2.337644,
+    "description": "The world's largest art museum in Paris."
+  },
+  {
+    "id": 3,
+    "name": "Tokyo Tower",
+    "category": "Landmark",
+    "lat": 35.658581,
+    "lng": 139.745438,
+    "description": "A famous landmark and observation tower in Tokyo."
+  },
+  {
+    "id": 4,
+    "name": "Bondi Beach",
+    "category": "Beach",
+    "lat": -33.891475,
+    "lng": 151.276684,
+    "description": "A popular beach and tourist destination in Sydney."
+  },
+  {
+    "id": 5,
+    "name": "Statue of Liberty",
+    "category": "Monument",
+    "lat": 40.689247,
+    "lng": -74.044502,
+    "description": "An iconic American symbol of freedom in New York."
+  },
+  {
+    "id": 6,
+    "name": "Great Wall of China",
+    "category": "Historical",
+    "lat": 40.431908,
+    "lng": 116.570374,
+    "description": "Ancient series of walls and fortifications in China."
+  },
+  {
+    "id": 7,
+    "name": "Eiffel Tower",
+    "category": "Landmark",
+    "lat": 48.8584,
+    "lng": 2.2945,
+    "description": "The iconic iron tower located in Paris."
+  },
+  {
+    "id": 8,
+    "name": "Golden Gate Bridge",
+    "category": "Landmark",
+    "lat": 37.8199,
+    "lng": -122.4783,
+    "description": "A famous suspension bridge spanning the Golden Gate in San Francisco."
+  },
+  {
+    "id": 9,
+    "name": "Colosseum",
+    "category": "Historical",
+    "lat": 41.8902,
+    "lng": 12.4922,
+    "description": "Ancient Roman amphitheatre in the center of Rome."
+  },
+  {
+    "id": 10,
+    "name": "Sydney Opera House",
+    "category": "Landmark",
+    "lat": -33.8568,
+    "lng": 151.2153,
+    "description": "A multi-venue performing arts centre in Sydney, known for its distinctive architecture."
+  },
+  {
+    "id": 11,
+    "name": "Buckingham Palace",
+    "category": "Landmark",
+    "lat": 51.5014,
+    "lng": -0.1419,
+    "description": "The London residence and administrative headquarters of the monarch of the United Kingdom."
+  },
+  {
+    "id": 12,
+    "name": "Christ the Redeemer",
+    "category": "Monument",
+    "lat": -22.9519,
+    "lng": -43.2105,
+    "description": "An Art Deco statue of Jesus Christ in Rio de Janeiro, Brazil."
+  },
+  {
+    "id": 13,
+    "name": "Machu Picchu",
+    "category": "Historical",
+    "lat": -13.1631,
+    "lng": -72.5450,
+    "description": "15th-century Inca citadel located in the Eastern Cordillera of southern Peru."
+  },
+  {
+    "id": 14,
+    "name": "Forbidden City",
+    "category": "Museum",
+    "lat": 39.9163,
+    "lng": 116.3971,
+    "description": "Historic palace complex in Beijing that houses collections of Chinese art and artifacts."
+  }
+]

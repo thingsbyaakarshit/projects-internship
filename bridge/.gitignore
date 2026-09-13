@@ -1,0 +1,50 @@
+# Node modules
+node_modules/
+
+# Environment files (may contain secrets)
+.env
+.env.*
+
+# Build output
+dist/
+build/
+
+# Tailwind generated CSS
+src/output.css
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# macOS
+.DS_Store
+
+# Caches
+.cache/
+.parcel-cache/
+
+# Coverage
+coverage/
+
+# Firebase local emulator / config
+.firebase/
+.firebase-debug.log
+
+# Secrets and keys
+*.pem
+serviceAccountKey.json
+
+# Misc
+*.local
+*.env.local
+
+# Ignore generated lock file? (uncomment only if you intentionally don't want to commit)
+# package-lock.json

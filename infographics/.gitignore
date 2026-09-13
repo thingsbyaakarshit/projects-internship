@@ -1,0 +1,60 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Build / output
+dist/
+build/
+.cache/
+.parcel-cache/
+*.local
+
+# Tailwind / generated CSS
+/src/output.css
+/output.css
+/.tailwind-cache/
+
+# Static server runtime files
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# Coverage
+coverage/
+
+# Mac Finder
+.AppleDouble
+.LSOverride
+
+# Misc
+*.pem
+*.key
+
+# Ignore local HTTP server state
+*.pid
+
+# If you build a production bundle, ignore it as well
+public/
+
+# Images and assets cache (if you generate any)
+.cache-assets/

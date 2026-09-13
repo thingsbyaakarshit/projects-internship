@@ -1,0 +1,116 @@
+<div class="min-h-content p-8 font-sans">
+  <!-- Main content area -->
+  <main class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Left column (stacked cards) -->
+      <div class="flex flex-col gap-6">
+
+        <!-- Detailed Summary Card -->
+        <div id="detailed-summary"
+          class="bg-white rounded-2xl shadow-[0_18px_30px_rgba(0,0,0,0.06)] p-8 h-fit flex flex-col justify-between">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900">Hi, Tracker</h2>
+            <p class="text-sm text-gray-600 mt-2">Here's what your summary looks like</p>
+
+            <ul id="summary-bullets" class="mt-4 list-disc pl-5 text-sm text-gray-700 space-y-2">
+              <li id="bullet-most-category">Your most spend category is <strong id="most-category">—</strong></li>
+              <li id="bullet-top-transaction">You spent most amount of money i.e. <strong
+                  id="top-transaction">—</strong></li>
+            </ul>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-between mt-4 gap-2">
+            <button id="summary-download"
+              class="cursor-pointer w-full sm:w-fit flex justify-between items-center gap-2 bg-gray-900 text-white rounded-full px-4 py-2 text-sm">
+              <p>Download</p>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden>
+                <path d="M12 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+
+            <div class="text-xs text-gray-500 text-center sm:text-left">Please click the button to download your monthly spending report</div>
+          </div>
+        </div>
+
+        <!-- Add transaction Modal (responsive: stacked on mobile) -->
+        <div class="bg-white rounded-2xl shadow-[0_18px_30px_rgba(0,0,0,0.06)] p-4 md:p-6">
+          <form id="transaction-form" class="flex flex-col md:flex-row gap-3 mb-4" onsubmit="return false;">
+            <div class="flex-1">
+              <label for="category" class="sr-only">Category</label>
+              <select id="category" class="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm bg-white">
+                <option value="food">Food</option>
+                <option value="transport">Transport</option>
+                <option value="shopping">Shopping</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="flex-1">
+              <label for="amount" class="sr-only">Amount</label>
+              <input id="amount" type="number" placeholder="Amount"
+                class="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none" />
+            </div>
+
+            <div class="md:w-36">
+              <label for="type" class="sr-only">Type</label>
+              <select id="type" class="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm bg-white">
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+              </select>
+            </div>
+          </form>
+
+          <div class="mb-4">
+            <label class="sr-only">Description</label>
+            <textarea id="description" placeholder="Description"
+              class="w-full border border-gray-200 rounded-xl px-3 py-3 text-sm resize-none h-20 md:h-12"></textarea>
+          </div>
+
+          <div class="flex flex-col items-center justify-center gap-2 sm:flex-row sm:justify-between">
+            <div class="w-full md:w-44">
+              <label for="txn-date" class="sr-only">Date</label>
+              <input id="txn-date" type="date"
+                class="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm bg-white" />
+            </div>
+            <button id="add-transaction-btn"
+              class="w-full cursor-pointer bg-gray-900 text-white rounded-full px-5 py-2 text-sm">Add
+              Transaction</button>
+          </div>
+        </div>
+
+        <!-- Summary Card -->
+        <div id="summary-card"
+          class="bg-white rounded-full shadow-[0_12px_24px_rgba(0,0,0,0.04)] p-3 h-14 flex items-center justify-center">
+          <div class="flex items-center gap-8 text-sm text-gray-700">
+            <div class="flex flex-col items-start sm:gap-2 sm:flex-row sm:items-center">
+              <div class="text-xs text-gray-500">Income</div>
+              <div id="summary-income" class="font-medium text-gray-800">₹0</div>
+            </div>
+            <div class="flex flex-col items-start sm:gap-2 sm:flex-row sm:items-center">
+              <div class="text-xs text-gray-500">Expenses</div>
+              <div id="summary-expense" class="font-medium text-gray-800">₹0</div>
+            </div>
+            <div class="flex flex-col items-start sm:gap-2 sm:flex-row sm:items-center">
+              <div class="text-xs text-gray-500">Net</div>
+              <div id="summary-net" class="font-medium text-gray-800">₹0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column (transaction list) -->
+      <div id="transaction-list" class="bg-white rounded-2xl shadow-[0_18px_30px_rgba(0,0,0,0.06)] p-6 h-[36rem]">
+        <h3 class="text-sm font-medium text-gray-700 mb-4">Transaction List</h3>
+        <div id="transaction-items" class="flex flex-col gap-3 overflow-y-auto max-h-[28rem] pr-2">
+          <div class="text-sm text-gray-500">No transactions yet</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

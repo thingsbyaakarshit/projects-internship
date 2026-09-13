@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="src/output.css">
+</head>
+
+<body class="bg-gray-100">
+  <!-- Sticky Navbar -->
+  <div class="sticky top-0 z-10 p-10">
+    <!-- Sticky Navbar -->
+    <header class="max-w-3xl mx-auto bg-white shadow-sm px-6 py-3 rounded-full flex justify-between items-center">
+      <h2 class="text-xl font-bold">blo._.oooooog</h2>
+      <a id="about-link" href="#about" class="cursor-pointer hover:scale-110">
+        <img src="./assets/face.svg" alt="face-icon">
+      </a>
+    </header>
+  </div>
+
+  <!-- Blog components -->
+  <section class="relative flex flex-col justify-center items-center">
+    <div id="blog-posts"
+      class="max-w-6xl mx-auto px-6 py-24 grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-12 items-stretch"></div>
+
+    <!-- Background Circles (muted tones) -->
+    <div class="absolute inset-0 pointer-events-none -z-10">
+      <div
+        class="absolute -left-32 -top-24 w-96 h-96 rounded-full bg-gradient-to-br from-yellow-100 via-amber-100 to-rose-100 opacity-80 blur-2xl transform rotate-12">
+      </div>
+
+      <div
+        class="absolute right-10 top-8 w-80 h-80 rounded-full bg-gradient-to-tr from-slate-100 via-slate-200 to-indigo-100 opacity-80 blur-3xl mix-blend-screen transform -rotate-6">
+      </div>
+
+      <div
+        class="absolute left-1/2 bottom-24 w-72 h-72 rounded-full bg-gradient-to-br from-green-100 via-emerald-100 to-teal-100 opacity-80 blur-2xl transform -translate-x-1/4 translate-y-4">
+      </div>
+    </div>
+  </section>
+
+  <!-- About component -->
+  <section id="about" class="max-w-6xl mx-auto px-6 py-24 grid grid-cols-1 md:grid-cols-[160px_1fr] gap-12 items-start">
+  </section>
+
+  <!-- footer -->
+  <footer id="footer" class="mt-auto mb-6 px-4 max-w-7xl mx-auto">
+  </footer>
+
+  <script type="module" src="./main.js"></script>
+</body>
+
+</html>

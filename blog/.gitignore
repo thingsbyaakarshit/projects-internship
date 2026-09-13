@@ -1,0 +1,65 @@
+# Node.js
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime files
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Build output
+dist/
+build/
+out/
+.cache/
+
+# Tailwind/Tmp generated CSS
+src/output.css
+
+# Parcel/Next/Vite/Nuxt artifacts
+.next/
+.nuxt/
+.vite/
+.parcel-cache/
+
+# Environment files
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editors/IDEs
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Editor temporary files
+*.swp
+*.swo
+
+# Misc
+tmp/
+temp/
+.sass-cache/
+coverage/
+.history/
+
+# Optional: lockfiles are commonly committed; uncomment to ignore if desired
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml

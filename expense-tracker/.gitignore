@@ -1,0 +1,50 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Build / output
+dist/
+build/
+out/
+public/build/
+.cache/
+.parcel-cache/
+.vite/
+
+# Tailwind / generated CSS (assumption: src/output.css is generated)
+src/output.css
+*.css.map
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs & coverage
+coverage/
+coverage-final.json
+*.log
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
+
+# Temp files
+*.bak
+*.swp
+*.tmp
+
+# Misc
+/.history
+
+# If you prefer to commit compiled CSS (src/output.css), remove that line from this file.

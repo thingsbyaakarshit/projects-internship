@@ -1,0 +1,82 @@
+[
+  {
+    "country": "India",
+    "year": 2021,
+    "depression": 7.1,
+    "anxiety": 5.2,
+    "bipolar": 0.9,
+    "coordinates": { "latitude": 20.5937, "longitude": 78.9629 }
+  },
+  {
+    "country": "United States",
+    "year": 2021,
+    "depression": 6.9,
+    "anxiety": 5.8,
+    "bipolar": 1.1,
+    "coordinates": { "latitude": 37.0902, "longitude": -95.7129 }
+  },
+  {
+    "country": "China",
+    "year": 2021,
+    "depression": 6.7,
+    "anxiety": 4.9,
+    "bipolar": 0.8,
+    "coordinates": { "latitude": 35.8617, "longitude": 104.1954 }
+  },
+  {
+    "country": "Brazil",
+    "year": 2021,
+    "depression": 6.5,
+    "anxiety": 5.0,
+    "bipolar": 0.7,
+    "coordinates": { "latitude": -14.2350, "longitude": -51.9253 }
+  },
+  {
+    "country": "Russia",
+    "year": 2021,
+    "depression": 6.4,
+    "anxiety": 4.7,
+    "bipolar": 0.6,
+    "coordinates": { "latitude": 61.5240, "longitude": 105.3188 }
+  },
+  {
+    "country": "Indonesia",
+    "year": 2021,
+    "depression": 6.3,
+    "anxiety": 4.5,
+    "bipolar": 0.7,
+    "coordinates": { "latitude": -0.7893, "longitude": 113.9213 }
+  },
+  {
+    "country": "Pakistan",
+    "year": 2021,
+    "depression": 6.2,
+    "anxiety": 4.4,
+    "bipolar": 0.6,
+    "coordinates": { "latitude": 30.3753, "longitude": 69.3451 }
+  },
+  {
+    "country": "Nigeria",
+    "year": 2021,
+    "depression": 6.1,
+    "anxiety": 4.3,
+    "bipolar": 0.5,
+    "coordinates": { "latitude": 9.0820, "longitude": 8.6753 }
+  },
+  {
+    "country": "Bangladesh",
+    "year": 2021,
+    "depression": 6.0,
+    "anxiety": 4.2,
+    "bipolar": 0.6,
+    "coordinates": { "latitude": 23.6850, "longitude": 90.3563 }
+  },
+  {
+    "country": "Mexico",
+    "year": 2021,
+    "depression": 5.9,
+    "anxiety": 4.1,
+    "bipolar": 0.5,
+    "coordinates": { "latitude": 23.6345, "longitude": -102.5528 }
+  }
+]

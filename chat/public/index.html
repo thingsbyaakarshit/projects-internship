@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi Chat Room With Usernames</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-b from-gray-100 to-gray-50">
+  <div class="w-full bg-white shadow-2xl flex flex-col md:flex-row h-screen overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar"
+      class="fixed inset-y-0 left-0 z-30 w-72 transform -translate-x-full md:translate-x-0 md:static md:inset-auto md:w-80 bg-gradient-to-b from-blue-600 to-indigo-600 text-white p-6 flex flex-col transition-transform duration-200">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 10h.01M12 10h.01M16 10h.01M9 16h6" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-lg font-semibold">Real-Time Chat</h1>
+          <p class="text-sm text-white/80">Multi-room with usernames</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4 mb-6">
+        <div class="flex-1">
+          <div class="text-sm font-semibold" id="currentUsername">Guest</div>
+          <div class="text-xs text-white/80">Online</div>
+        </div>
+        <button id="setUsernameBtn" class="bg-white text-blue-600 px-3 py-1.5 rounded-md text-sm">Set</button>
+      </div>
+
+      <label for="usernameInput" class="text-xs text-white/80 mb-1">Change name</label>
+      <div class="flex gap-2 mb-4">
+        <input id="usernameInput" type="text" placeholder="Enter username" class="w-full rounded-md p-2 text-black" />
+      </div>
+
+      <div class="mt-2">
+        <div class="text-sm font-medium text-white/90 mb-2">Rooms</div>
+        <div class="text-xs text-white/80 mb-2">Joined</div>
+        <div id="joinedRoomsList" class="space-y-2 overflow-y-auto pr-1" style="max-height:120px"></div>
+        <div class="text-xs text-white/80 mt-3 mb-2">Private</div>
+        <div id="privateRoomsList" class="space-y-2 overflow-y-auto pr-1" style="max-height:120px"></div>
+        <div class="text-xs text-white/80 mt-3 mb-2">Public</div>
+        <div id="roomsList" class="space-y-2 overflow-y-auto pr-1" style="max-height:220px">
+          <!-- Example rooms (JS can populate here) -->
+          <button
+            class="w-full text-left px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-between">
+            <span># general</span>
+            <span class="text-xs text-white/70">12</span>
+          </button>
+          <button class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 flex items-center justify-between">
+            <span># design</span>
+            <span class="text-xs text-white/70">3</span>
+          </button>
+        </div>
+
+        <div class="mt-4 flex gap-2">
+          <input id="newRoomInput" type="text" placeholder="New room" class="flex-1 rounded-md p-2 text-black" />
+          <button id="createRoomBtn" class="bg-white/90 text-indigo-600 px-3 py-2 rounded-md" aria-label="Create room">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" viewBox="0 0 20 20"
+              fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+        <div class="mt-2 flex gap-2 items-center">
+          <input id="inviteInput" type="text" placeholder="Enter invite code"
+            class="flex-1 rounded-md p-2 text-black" />
+          <button id="joinInviteBtn" class="bg-white/90 text-indigo-600 px-3 py-2 rounded-md">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" viewBox="0 0 20 20"
+              fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-auto text-xs text-white/70">Tip: Create a room and you'll auto-join it.</div>
+    </aside>
+
+    <!-- MAIN CHAT -->
+    <main class="relative md:flex-1 flex flex-col bg-gray-50 h-full">
+      <!-- Header -->
+      <div class="flex items-center justify-between px-4 md:px-6 py-4 border-b bg-white">
+        <div class="flex items-center gap-3">
+          <button id="sidebarToggle" class="md:hidden p-2 rounded-md bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <div>
+            <h2 id="roomTitle" class="text-lg font-semibold text-gray-800"># general</h2>
+            <!-- Room description -->
+            <div id="roomDesc" class="text-xs text-gray-500">Public room · 0 members</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="flex -space-x-2">
+          </div>
+        </div>
+      </div>
+
+      <!-- typing indicator -->
+      <div id="typingIndicator" class="px-6 pb-2 text-xs text-gray-500 h-4">&nbsp;</div>
+
+      <!-- Mobile overlay for sidebar -->
+      <div id="overlay" class="fixed inset-0 bg-black/40 z-20 hidden"></div>
+
+      <!-- Messages -->
+      <div id="messages"
+        class="flex-1 overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-white to-gray-50 pb-24 md:pb-6">
+        <!-- Sample message (other) -->
+        <div class="flex items-start gap-3">
+          <div>
+            <div class="text-sm font-semibold">Alice <span class="text-xs text-gray-400 font-normal">· 2:14 PM</span>
+            </div>
+            <div class="mt-1 px-4 py-2 bg-white rounded-2xl shadow-sm text-gray-800 max-w-md">Hey everyone — excited for
+              today's demo!</div>
+          </div>
+        </div>
+
+        <!-- Sample message (me) -->
+        <div class="flex items-start gap-3 justify-end">
+          <div class="text-right">
+            <div class="text-sm font-semibold">You <span class="text-xs text-gray-400 font-normal">· 2:16 PM</span>
+            </div>
+            <div class="mt-1 inline-block px-4 py-2 bg-blue-600 text-white rounded-2xl shadow-sm">Nice! I'll share the
+              link now.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input -->
+      <form id="messageForm"
+        class="flex items-center gap-3 p-4 border-t bg-white md:static absolute bottom-0 left-0 right-0 z-10 md:z-auto md:rounded-none md:border-t md:bg-white">
+        <button id="uploadBtn" type="button" class="text-gray-500 hover:text-gray-700">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828L18 9.828V7h-2.828z" />
+          </svg>
+        </button>
+        <input id="fileInput" type="file" class="hidden" />
+        <input id="messageInput" type="text" placeholder="Type your message..."
+          class="flex-1 rounded-full border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-full">Send</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- Floating notifications container (top-center) -->
+  <div id="notifications"
+    class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 flex flex-col items-center gap-2 pointer-events-none">
+  </div>
+  <script src="main.js"></script>
+</body>
+
+</html>

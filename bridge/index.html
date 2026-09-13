@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bridge - Connect Entrepreneurs & Investors</title>
+  <link rel="stylesheet" href="./src/output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-white">
+  <!-- Auth Section -->
+  <div id="authSection" class="min-h-screen flex items-center justify-center">
+    <div class="bg-white p-6 rounded-2xl shadow-2xl w-80 text-center">
+      <h1 class="text-2xl font-extrabold mb-2">Bridge</h1>
+      <p class="text-sm text-gray-500 mb-6">Don't just network. Build the bridge to your next opportunity</p>
+
+      <div class="mb-3">
+        <input type="email" id="email" placeholder="Email"
+          class="w-full px-4 py-3 rounded-full bg-gray-100 placeholder-gray-400 focus:outline-none focus:ring-0">
+      </div>
+      <div class="mb-3">
+        <input type="password" id="password" placeholder="Password"
+          class="w-full px-4 py-3 rounded-full bg-gray-100 placeholder-gray-400 focus:outline-none focus:ring-0">
+      </div>
+
+      <div id="signupFields" class="mb-3 hidden">
+        <input type="text" id="fullName" placeholder="Full Name"
+          class="w-full px-4 py-3 rounded-full bg-gray-100 placeholder-gray-400 mb-3 focus:outline-none">
+        <select id="userType" class="w-full px-4 py-3 rounded-full bg-gray-100 placeholder-gray-400 focus:outline-none">
+          <option value="entrepreneur">Entrepreneur</option>
+          <option value="investor">Investor</option>
+          <option value="banker">Banker</option>
+          <option value="advisor">Advisor</option>
+        </select>
+      </div>
+
+      <button id="authButton"
+        class="w-full bg-black text-white rounded-full py-3 mt-2 hover:opacity-95">Continue</button>
+
+      <p class="mt-4 text-xs text-gray-500">
+        <a href="#" id="toggleAuth" class="text-gray-600 underline">Sign In To Continue</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Main Dashboard -->
+  <div id="dashboard" class="hidden">
+    <!-- Navigation (modern, minimal, responsive) -->
+    <nav class="bg-white border-b border-gray-100">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+          <!-- Left: Brand -->
+          <div class="flex items-center space-x-3">
+            <div class="flex items-center justify-center h-10 w-10 rounded-lg bg-black text-white font-bold">
+              B</div>
+            <div class="hidden sm:block">
+              <div class="text-sm font-semibold">Bridge</div>
+              <div class="text-xs text-gray-400">Connect. Evaluate. Grow.</div>
+            </div>
+          </div>
+
+          <!-- Right: controls -->
+          <div class="flex items-center space-x-3">
+            <button id="notificationButton" class="relative p-2 rounded-lg hover:bg-gray-50 focus:outline-none"
+              aria-label="Notifications">
+              <i class="fas fa-bell text-gray-600"></i>
+              <span id="notificationCount"
+                class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4">0</span>
+            </button>
+
+            <div class="flex items-center space-x-3">
+              <div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center text-sm text-gray-600">U
+              </div>
+              <div id="userEmail" class="text-sm text-gray-700 hidden sm:block"></div>
+            </div>
+
+            <button id="signOut"
+              class="flex items-center text-sm text-gray-500 hover:text-gray-800 px-2 py-2 rounded-md border border-transparent hover:border-gray-100">
+              <i class="fas fa-sign-out-alt text-gray-600 sm:hidden"></i>
+              <span class="hidden sm:inline">Sign Out</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <!-- Complete Profile (shown when user missing userType) -->
+      <div id="completeProfile" class="mb-8 hidden">
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h2 class="text-xl font-bold mb-4">Complete your profile</h2>
+          <input type="text" id="profileFullName" placeholder="Full Name" class="w-full p-2 border rounded mb-2">
+          <select id="profileUserType" class="w-full p-2 border rounded mb-4">
+            <option value="entrepreneur">Entrepreneur</option>
+            <option value="investor">Investor</option>
+            <option value="banker">Banker</option>
+            <option value="advisor">Advisor</option>
+          </select>
+          <button id="saveProfile" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Save
+            Profile</button>
+        </div>
+      </div>
+      <!-- Post Idea Form (Only visible to entrepreneurs) -->
+      <div id="postIdeaForm" class="mb-8 hidden">
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <h2 class="text-lg font-semibold mb-4 text-black">Post a business idea</h2>
+
+          <div class="mb-4">
+            <input type="text" id="ideaTitle" placeholder="Idea Title"
+              class="w-full text-black bg-transparent b focus:border-black focus:outline-none" />
+          </div>
+
+          <div class="mb-4">
+            <textarea id="ideaDescription" placeholder="Describe your business idea..."
+              class="w-full text-black bg-white border border-gray-300 rounded p-3 h-28 focus:border-black focus:outline-none"></textarea>
+          </div>
+
+          <label class="flex items-center space-x-2 mb-4 text-sm text-gray-600">
+            <input type="checkbox" id="ideaForReview" class="h-4 w-4 text-black" />
+            <span>Review (notify advisors)</span>
+          </label>
+
+          <div class="flex justify-end">
+            <button id="submitIdea" class="bg-black text-white px-5 py-2 rounded-xl">Post Idea</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ideas Feed -->
+      <div id="ideasFeed" class="space-y-6">
+        <!-- Ideas will be dynamically inserted here -->
+      </div>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div id="notificationsPanel"
+      class="hidden fixed right-0 top-16 w-80 bg-white border border-gray-100 shadow-sm rounded-lg m-4 max-h-96 overflow-y-auto">
+      <div class="p-3 border-b border-gray-100 flex items-center justify-between">
+        <h3 class="text-sm font-semibold">Notifications</h3>
+        <button id="notificationsClose" class="text-gray-400 hover:text-gray-600 p-1 rounded"
+          aria-label="Close notifications">✕</button>
+      </div>
+      <div class="p-2">
+        <div id="notificationsList" class="divide-y divide-gray-100">
+          <!-- Notifications will be dynamically inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Response Modal (for entrepreneurs to accept/reject) -->
+    <div id="notificationModal" class="hidden fixed inset-0 z-60 bg-black/50">
+      <div class="bg-white rounded-lg p-6 w-11/12 max-w-lg mx-auto mt-24">
+        <h3 id="notifModalTitle" class="text-lg font-bold mb-2">Notification</h3>
+        <div id="notifModalBody" class="text-sm mb-4"></div>
+        <div class="flex justify-end space-x-2">
+          <button id="notifReject" class="px-4 py-2 rounded border">Reject</button>
+          <button id="notifAccept" class="px-4 py-2 rounded bg-green-600 text-white">Accept</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Proposal Modal (hidden, minimal) -->
+  <div id="proposalModal" class="hidden fixed inset-0 z-50 bg-black/50">
+    <div class="min-h-screen flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-lg rounded-lg border border-gray-100 shadow-sm p-6">
+        <div class="flex items-start justify-between mb-3">
+          <h3 class="text-sm font-semibold text-black">Send a proposal</h3>
+          <button id="proposalClose" class="text-gray-400 hover:text-gray-600" aria-label="Close">✕</button>
+        </div>
+        <textarea id="proposalText" class="w-full p-3 border border-gray-200 rounded-md h-36 mb-4 text-sm text-black"
+          placeholder="Write a short proposal or message..."></textarea>
+        <div class="flex items-center justify-end space-x-3">
+          <button id="proposalCancel"
+            class="px-4 py-2 rounded-md border border-gray-200 text-sm text-gray-700">Cancel</button>
+          <button id="proposalSubmit" class="px-4 py-2 rounded-md bg-black text-white text-sm">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loan Proposal Modal (for bankers, minimal) -->
+  <div id="loanModal" class="hidden fixed inset-0 z-50 bg-black/50">
+    <div class="min-h-screen flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-lg rounded-lg border border-gray-100 shadow-sm p-6">
+        <div class="flex items-start justify-between mb-3">
+          <h3 class="text-sm font-semibold text-black">Send a loan proposal</h3>
+          <button id="loanClose" class="text-gray-400 hover:text-gray-600" aria-label="Close">✕</button>
+        </div>
+        <input id="loanAmount" type="number" class="w-full p-3 border border-gray-200 rounded-md mb-3 text-sm"
+          placeholder="Amount (USD)">
+        <textarea id="loanTerms" class="w-full p-3 border border-gray-200 rounded-md h-36 mb-4 text-sm"
+          placeholder="Terms and notes..."></textarea>
+        <div class="flex items-center justify-end space-x-3">
+          <button id="loanCancel"
+            class="px-4 py-2 rounded-md border border-gray-200 text-sm text-gray-700">Cancel</button>
+          <button id="loanSubmit" class="px-4 py-2 rounded-md bg-black text-white text-sm">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intercept any remaining native alerts and forward them to the toast UI for non-blocking UX -->
+  <script type="module">
+    // This overrides window.alert at runtime so any stray alert() calls are converted to toasts
+    // and we log a stack trace to help find their source. Safe to remove when debugging is complete.
+    try {
+      import('./src/toast.js').then(mod => {
+        const { showToast } = mod;
+        window._origAlert = window.alert;
+        window.alert = function (msg) {
+          try { showToast(String(msg), 'info'); } catch (e) { console.warn('showToast failed', e); }
+          console.warn('Intercepted native alert:', msg);
+          console.trace();
+        };
+      }).catch(e => { console.warn('Failed to load toast module for alert interception', e); });
+    } catch (e) {
+      console.warn('Alert interception setup failed', e);
+    }
+  </script>
+
+  <script type="module" src="./src/firebase-config.js"></script>
+  <script type="module" src="./app.js"></script>
+  <script type="module" src="./src/notification-modal.js"></script>
+</body>
+
+</html>

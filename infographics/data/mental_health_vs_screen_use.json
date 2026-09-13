@@ -1,0 +1,29 @@
+{
+  "mental_health_vs_screen_use": [
+    {
+      "year": 2019,
+      "average_screen_time_hours_per_day": 3.5,
+      "mental_health_index": 75
+    },
+    {
+      "year": 2020,
+      "average_screen_time_hours_per_day": 5.2,
+      "mental_health_index": 70
+    },
+    {
+      "year": 2021,
+      "average_screen_time_hours_per_day": 6.1,
+      "mental_health_index": 68
+    },
+    {
+      "year": 2022,
+      "average_screen_time_hours_per_day": 6.8,
+      "mental_health_index": 65
+    },
+    {
+      "year": 2023,
+      "average_screen_time_hours_per_day": 7.0,
+      "mental_health_index": 63
+    }
+  ]
+}

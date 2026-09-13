@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog post</title>
+  <link rel="stylesheet" href="/src/output.css">
+</head>
+
+<body class="bg-white">
+  <!-- Article container -->
+  <main class="max-w-7xl mx-auto px-6 py-6">
+    <div id="post-banner" class="w-full h-72 rounded-2xl overflow-hidden bg-gray-200"></div>
+
+    <!-- Back-Link -->
+    <a href="/index.html" class="inline-block mt-6 text-sm text-gray-600 hover:underline">&larr; Back</a>
+
+    <div class="mt-6 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6">
+      <!-- article -->
+      <article id="post" class="sm:px-8 sm:py-8">
+        <!-- content will be injected; inner wrapper limits width for readability on small screens -->
+        <div class="max-w-3xl mx-auto">
+          <h1 id="title" class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900">Loading…</h1>
+          <p id="description" class="text-gray-600 mt-4"></p>
+          <div id="body" class="prose mt-6 text-gray-800"></div>
+        </div>
+      </article>
+
+      <aside id="comments" class="lg:sticky lg:top-24 self-start overflow-auto" style="height: calc(100vh - 350px);">
+        <!-- comments module will render here -->
+      </aside>
+    </div>
+  </main>
+
+  <script type="module" src="../main.js"></script>
+</body>
+
+</html>
